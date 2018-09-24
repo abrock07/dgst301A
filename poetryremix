@@ -1,5 +1,5 @@
 #This is my code for my poetry remix project, which pulls random adjectives and nouns from Grimm's Fairytales text from 
-the Guternberg Project.
+the Gutenberg Project.
 #This looks for a file called "grimm.txt in my python notebook."
 import random
 from textblob import TextBlob
