@@ -19,7 +19,5 @@ for word, pos in blob.tags:
 #This generates a 4 line poem by pairing a random adjective and noun
 for i in range(4):
     a1 = random.choice(adjective)
-    a2 = random.choice(adjective)
     n1 = random.choice(noun)
-    n2 = random.choice(noun)
     print(a1 + " " + n1)
