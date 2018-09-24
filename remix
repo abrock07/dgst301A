@@ -1,0 +1,25 @@
+#This is my code for my poetry remix project, which pulls random adjectives and nouns from Grimm's Fairytales text from 
+the Guternberg Project.
+#This looks for a file called "grimm.txt in my python notebook."
+import random
+from textblob import TextBlob
+#Text file's content are stored in the variable called "text."
+with open ('grimm.txt','r') as file:
+    text = file.read ()
+blob = TextBlob(text)
+#Two empty lists to store adjectives and nouns
+adjective = []
+noun = []
+#This code loops through the text, looking for adjectives and nouns
+for word, pos in blob.tags:
+    if (pos == 'JJ'):
+        adjective.append(word)
+    if (pos == 'NN'):
+        noun.append(word)
+#This generates a 4 line poem by pairing a random adjective and noun
+for i in range(4):
+    a1 = random.choice(adjective)
+    a2 = random.choice(adjective)
+    n1 = random.choice(noun)
+    n2 = random.choice(noun)
+    print(a1 + " " + n1)
