@@ -10,14 +10,18 @@ blob = TextBlob(text)
 #Two empty lists to store adjectives and nouns
 adjective = []
 noun = []
+verb =[]
 #This code loops through the text, looking for adjectives and nouns
 for word, pos in blob.tags:
     if (pos == 'JJ'):
         adjective.append(word)
     if (pos == 'NN'):
         noun.append(word)
+       if (pos == 'VB'):
+        verb.append(word)
 #This generates a 4 line poem by pairing a random adjective and noun
 for i in range(4):
     a1 = random.choice(adjective)
     n1 = random.choice(noun)
-    print(a1 + " " + n1)
+    v1 = randomn.choice(verb)
+    print(v1 + " " + n1 + " " + a1)
