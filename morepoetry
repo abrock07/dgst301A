@@ -27,7 +27,7 @@ def get_pairs():
     pairs = []
     
     for n in nouns:
-         if (v in pronouncing.rhymes(n)):
+         if (n in pronouncing.rhymes(n)):
             pairs.append( (n) )
 
     return pairs
