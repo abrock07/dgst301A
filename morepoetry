@@ -1,0 +1,50 @@
+#using various tools to help generate text for the poem
+from textblob import TextBlob
+import random
+import pycorpora
+import pronouncing
+
+#getting nouns from pycorpora
+def get_nouns():
+     if (pos is "nouns"):
+        all_words = pycorpora.words.nouns["nouns"]
+        
+keepers = []
+    for n in all_words:
+        pl = pronouncing.phones_for_word(n)
+        if (len(pl) > 0):      
+            sc = pronouncing.syllable_count(pl[0])
+            if (sc == 2):
+                keepers.append(n)
+            
+    return keepers
+
+#getting rhyming pairs
+def get_pairs():
+    nouns = get_words("nouns")
+    pairs = []
+    
+    for n in nouns:
+         if (n in pronouncing.rhymes(n)):
+            pairs.append( (n) )
+
+    return pairs
+
+def an(word):
+    if (word[0] in ["a","e","i","o","u"]):
+        return "an " + word
+    else:
+        return "a " + word
+
+template = """If I profane with my unworthiest {0}
+This holy shrine, the gentle fine is this:
+My lips, two blushing pilgrims, ready {1}
+To smooth that rough touch with a tender kiss."""
+
+pair = random.choice(get_pairs())
+
+poem = template.format(
+    pair[0],
+    an(pair[1]))
+
+print(poem)
