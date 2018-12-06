@@ -1,0 +1,74 @@
+let leaves = [];
+var font,
+  fontsize = 40
+var type = "Helvetica";
+
+function setup() {
+  createCanvas(800, 600);
+  fill(254, 249, 79);
+  //noStroke();
+  var h = hour();
+  var m = minute();
+  textAlign(CENTER);
+  textFont(type);
+  textSize(fontsize);
+  textAlign(CENTER, CENTER);
+} //draws background
+
+function draw() {
+  textAlign(CENTER);
+  //drawWords(width * .5);
+  //strokeWeight(4);
+  //stroke(0);
+  //noFill();
+  background("black");
+  let t = frameCount / 100; //updates time
+
+  //text(+ h + ": "+ m);
+  let current_minute = minute();
+  let current_hour = hour();
+  text(current_hour + ":" + current_minute, width / 2 - 28, height / 2 + 20);
+  textAlign(CENTER);
+  let xh = map(second(), 0, 60, 0, 100);
+
+  for (var i = 0; i < random(5); i++) {
+    leaves.push(new leaflet()); // append leaf object
+  }
+  for (let petal of leaves) {
+    petal.update(t);
+    petal.display();
+  }
+}
+
+function drawWords(x) {
+  //fill(255);
+}
+
+function leaflet() {
+  // initialize coordinates
+  this.posX = 0;
+  this.posY = random(-50, 0);
+  this.initialangle = random(0, 4 * PI);
+  this.size = random(7, 10);
+
+  this.radius = sqrt(random(pow(width / 1, 2)));
+
+  this.update = function(time) {
+    // x position follows a circle
+    let w = 0.2; // angular speed
+    let angle = w * time + this.initialangle;
+    this.posX = width / 1 + this.radius * tan(angle); //calculates tangent of the angle the petals fall
+    this.posY += pow(this.size, 0.2);
+
+    this.posY += pow(this.size, 0.2);
+
+    if (this.posY > height) {
+      let index = leaves.indexOf(this);
+      leaves.splice(index, 1);
+    }
+  };
+
+  this.display = function() {
+    ellipse(this.posX, this.posY, this.size);
+  };
+}
